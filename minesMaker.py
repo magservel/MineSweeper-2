@@ -11,9 +11,10 @@ def __createEmptyTable(width, height):
         ret.append(deepcopy(line))
     return ret
 
-def __setRandomMines(table, countOfMines):
+
+def __setRandomMines(table, count_of_mines):
     i = 0
-    while (i < countOfMines):
+    while (i < count_of_mines):
         randY = randint(0, len(table) - 1)
         randX = randint(0, len(table[0]) - 1)
         if table[randY][randX]['type'] == 'mine':
@@ -23,6 +24,7 @@ def __setRandomMines(table, countOfMines):
         i += 1
     return table
 
+
 def __fillFields(table):
     for y in range(0, len(table)):
         for x in range(0, len(table[0])):
@@ -31,14 +33,15 @@ def __fillFields(table):
                 for i in range(-1, 2):
                     for j in range(-1, 2):
                         if 0 <= y+i < len(table) and 0 <= x+j < len(table[0]):
-                            if (table[y + i][x + j]['type'] == 'mine'):
+                            if table[y + i][x + j]['type'] == 'mine':
                                 count += 1
                 if count > 0:
                     table[y][x]['type'] = count
     return table
 
-def generateMines(width, height, countOfMines):
+
+def generateMines(width, height, count_of_mines):
     ret = __createEmptyTable(width, height)
-    ret = __setRandomMines(ret, countOfMines)
+    ret = __setRandomMines(ret, count_of_mines)
     ret = __fillFields(ret)
     return ret

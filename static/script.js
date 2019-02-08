@@ -65,18 +65,19 @@ $(document).ready(function () {
         loadNewGame();
     });
 
-    $container.on('click', '.unclicked', function() {
-        var str = $(this).attr('id');
-        var clickedXY = str.split('x');
-        if (gameArray[clickedXY[0]][clickedXY[1]].marked) {
-            return;
-        }
-        console.log(clickedXY[0] + ' - ' + clickedXY[1] + ' was clicked');
+    $('#next-move-button').on('click', function() {
+//        var str = $(this).attr('id');
+//        var clickedXY = str.split('x');
+//        if (gameArray[clickedXY[0]][clickedXY[1]].marked) {
+//            return;
+//        }
+//        console.log(clickedXY[0] + ' - ' + clickedXY[1] + ' was clicked');
 
-        jsonData.clickedY = parseInt(clickedXY[0]);
-        jsonData.clickedX = parseInt(clickedXY[1]);
-        jsonData.data = gameArray;
-
+//        jsonData.clickedY = parseInt(clickedXY[0]);
+//        jsonData.clickedX = parseInt(clickedXY[1]);
+       jsonData.data = gameArray;
+       console.log('Post move data');
+        //TODO: Send nothing else than event
         $.ajax({
             type: 'POST',
             url: '/postMoveData',
